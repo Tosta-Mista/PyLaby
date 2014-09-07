@@ -1,16 +1,31 @@
 # -*- coding: utf-8 -*-
 __author__ = 'jgo'
+import Lab
 from tkinter import *
 
 
-fen = Tk()
-fen.title("PyLaby v0.1")
+if __name__=="__main__":
+    # Initialisation du personnage
+    perso="X"
+    pos_perso=[1, 1]
+    tresor="#"
+    n_levels_total=20
+    data = {
+        "po": 0,
+        "pv": 25,
+        "level": 1
+    }
+    size_sprite = 29
 
-can = Canvas(fen, width=500, height=500)
+    # Initialisation de l'affichage graphique
+    fenetre = Tk()
+    fenetre.title("PyLaby Game v0.1")
 
-photo_wall = PhotoImage(file="sprite/wall.png")
-sprite_wall = can.create_image(0, 0, anchor=NW, image=photo_wall)
+    # Lancement de la partie
+    level = Lab.charge_labyrinthe("level1")
 
-can.pack()
+    (canvas, sprite_perso, photos) = Lab.affiche_labyrinthe(level, fenetre, size_sprite, pos_perso)
+    Lab.init_touches(fenetre, canvas, level, pos_perso, sprite_perso)
 
-fen.mainloop()
+    # Boucle evenementielle
+    fenetre.mainloop()

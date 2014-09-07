@@ -108,6 +108,15 @@ def deplacement(event, can, dep, lab, pos_perso, perso):
     if dep == "right":
         pos_col += 1
 
+    if dep == "left":
+        pos_col -= 1
+
+    if dep == "up":
+        pos_ligne -= 1
+
+    if dep == "down":
+        pos_ligne += 1
+
     # Teste si le deplacement conduit le personnage en dehors de l'aire de jeu
     if pos_ligne < 0 or pos_col < 0 or pos_ligne > (n_lignes - 1) or pos_col > (n_cols - 1):
         return None
